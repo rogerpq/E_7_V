@@ -8,4 +8,4 @@ RUN npm i -g npm
 COPY . /yumiko/
 WORKDIR /yumiko/
 RUN pip3 install -U -r requirements.txt
-CMD python3 -m Telugucoders
+CMD python3 -m zthon
