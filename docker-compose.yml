@@ -1,0 +1,13 @@
+version: "3.10"
+services:
+  worker:
+    build: .
+    environment:
+       APP_ID: $APP_ID
+       API_HASH: $API_HASH
+       TG_BOT_TOKEN: $TG_BOT_TOKEN
+       STRING_SESSION: $STRING_SESSION
+       ENV: $ANYTHING
+       COMMAND_HAND_LER: $.
+       TG_BOT_USERNAME: $TG_BOT_USERNAME
+       DATABASE_URL: $DATABASE_URL
