@@ -1,3 +1,4 @@
+telethon
 aiofiles
 aiohttp
 apscheduler
@@ -73,8 +74,7 @@ vcsi
 wand
 wget
 youtube-search
-yt-dlp==2023.02.17
+yt-dlp==2023.7.6
 
-git+https://github.com/sandy1709/Telethon@betagit+https://github.com/goldsmith/Wikiedia
 git+https://github.com/sandy1709/py-googletrans
 git+https://github.com/alexmercerind/youtube-search-python
