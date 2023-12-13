@@ -4,19 +4,19 @@
 _get_ziplink () {
     local regex
     regex='(https?)://github.com/.+/.+'
-    if [[ $UPSTREAM_REPO == "Rep" ]]
+    if [[ $UPSTREAM_REPO == "Repthon" ]]
     then
-        echo "aHR0cHM6Ly9naXRodWIuY29tL1JlcHRob25BcmFiaWMvUmVwdGhvbkFyL2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
+        echo "aHR0cHM6Ly9naXRodWIuY29tL1JlcHRob25BcmFiaWMvUmVwdGhvbi9hcmNoaXZlL0wuemlw" | base64 -d
     elif [[ $UPSTREAM_REPO =~ $regex ]]
     then
         if [[ $UPSTREAM_REPO_BRANCH ]]
         then
             echo "${UPSTREAM_REPO}/archive/${UPSTREAM_REPO_BRANCH}.zip"
         else
-            echo "${UPSTREAM_REPO}/archive/master.zip"
+            echo "${UPSTREAM_REPO}/archive/L.zip"
         fi
     else
-        echo "aHR0cHM6Ly9naXRodWIuY29tL1JlcHRob25BcmFiaWMvUmVwdGhvbkFyL2FyY2hpdmUvbWFzdGVyLnppcA==" | base64 -d
+        echo "aHR0cHM6Ly9naXRodWIuY29tL1JlcHRob25BcmFiaWMvUmVwdGhvbi9hcmNoaXZlL0wuemlw" | base64 -d
     fi
 }
 
@@ -24,14 +24,14 @@ _get_repolink () {
     local regex
     local rlink
     regex='(https?)://github.com/.+/.+'
-    if [[ $UPSTREAM_REPO == "Rep" ]]
+    if [[ $UPSTREAM_REPO == "Repthon" ]]
     then
-        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL1JlcHRob25BcmFiaWMvUmVwdGhvbkFyLmdpdA==" | base64 -d`
+        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL1JlcHRob25BcmFiaWMvUmVwdGhvbi5naXQ=" | base64 -d`
     elif [[ $UPSTREAM_REPO =~ $regex ]]
     then
         rlink=`echo "${UPSTREAM_REPO}"`
     else
-        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL1JlcHRob25BcmFiaWMvUmVwdGhvbkFyLmdpdA==" | base64 -d`
+        rlink=`echo "aHR0cHM6Ly9naXRodWIuY29tL1JlcHRob25BcmFiaWMvUmVwdGhvbi5naXQ=" | base64 -d`
     fi
     echo "$rlink"
 }
@@ -44,8 +44,8 @@ _run_python_code() {
 _run_catpack_git() {
     $(_run_python_code 'from git import Repo
 import sys
-OFFICIAL_UPSTREAM_REPO = "https://github.com/RepthonArabic/RepthonAr"
-ACTIVE_BRANCH_NAME = "master"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/RepthonArabic/Repthon"
+ACTIVE_BRANCH_NAME = "L"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
 origin.fetch()
@@ -58,7 +58,7 @@ _run_cat_git() {
     $(_run_python_code 'from git import Repo
 import sys
 OFFICIAL_UPSTREAM_REPO="'$repolink'"
-ACTIVE_BRANCH_NAME = "'$UPSTREAM_REPO_BRANCH'" or "master"
+ACTIVE_BRANCH_NAME = "'$UPSTREAM_REPO_BRANCH'" or "L"
 repo = Repo.init()
 origin = repo.create_remote("temponame", OFFICIAL_UPSTREAM_REPO)
 origin.fetch()
@@ -68,7 +68,7 @@ repo.heads[ACTIVE_BRANCH_NAME].checkout(True) ')
 
 _set_bot () {
     local zippath
-    zippath="RepthonAr.zip"
+    zippath="L.zip"
     echo "جاري تنزيل اكواد السورس "
     wget -q $(_get_ziplink) -O "$zippath"
     echo " تفريغ البيانات "
@@ -87,7 +87,7 @@ _set_bot () {
     echo "
 
     "
-    python3 -m zthon
+    python3 -m repthon
 }
 
 _set_bot
